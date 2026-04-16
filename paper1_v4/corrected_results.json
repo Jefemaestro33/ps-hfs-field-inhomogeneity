@@ -1,0 +1,39 @@
+{
+  "mills_measured": {
+    "delta_hfs_corrected": -0.2143555911607109,
+    "mean_dB_ppm": 0.518680188422507,
+    "note": "With detection weight w(z) = 1 - 1.4cm\u207b\u00b9|z|"
+  },
+  "ritter_scan": {
+    "2": {
+      "delta_hfs_corrected": -0.11936256207991391,
+      "mean_dB_ppm": 0.2900309162852185
+    },
+    "3": {
+      "delta_hfs_corrected": -0.17904378671664745,
+      "mean_dB_ppm": 0.4350463744277143
+    },
+    "5": {
+      "delta_hfs_corrected": -0.29840602501644753,
+      "mean_dB_ppm": 0.7250772907130761
+    },
+    "8": {
+      "delta_hfs_corrected": -0.47744854277698323,
+      "mean_dB_ppm": 1.160123665141058
+    },
+    "10": {
+      "delta_hfs_corrected": -0.5968094191921409,
+      "mean_dB_ppm": 1.4501545814261019
+    },
+    "15": {
+      "delta_hfs_corrected": -0.8952075979905203,
+      "mean_dB_ppm": 2.175231872139375
+    },
+    "20": {
+      "delta_hfs_corrected": -1.1935979824047536,
+      "mean_dB_ppm": 2.900309162852307
+    }
+  },
+  "ishida_uniform": 0.18111682025482878,
+  "ishida_nontherm": -0.05231724918121472
+}

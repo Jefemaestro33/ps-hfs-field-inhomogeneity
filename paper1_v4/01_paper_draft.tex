@@ -1,0 +1,291 @@
+\documentclass[twocolumn,pra,aps,superscriptaddress,floatfix,10pt]{revtex4-2}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+
+\newcommand{\etal}{\textit{et~al.}}
+
+\begin{document}
+
+\title{Nonlinear Breit-Rabi amplification of sub-ppm field inhomogeneity in positronium hyperfine spectroscopy}
+
+\author{Ernest Darell Zerme\~no}
+\email{0244552@up.edu.mx}
+\affiliation{Universidad Panamericana, Guadalajara, M\'exico}
+
+\date{\today}
+
+\begin{abstract}
+In their 1975 precision measurement of the positronium ground-state hyperfine structure (HFS), Mills and Bearman characterized the magnetic field gradients across their microwave cavity by nuclear magnetic resonance (NMR) probing and reported a sub-ppm spatial offset $\langle\delta B/B_0\rangle = +0.44$\,ppm averaged over the positronium distribution, which they applied as a linear correction to the central field. We show that propagating this same offset through the full nonlinear Breit-Rabi inversion---a step not performed in the original analysis or any subsequent work---produces an additional bias on the extracted HFS interval of $\delta\Delta_\mathrm{HFS} = -0.22 \pm 0.06$\,MHz, with no free parameters. The underlying mechanism is a sensitivity coefficient $d\Delta_\mathrm{HFS}/dB_\mathrm{res} \approx 4.5 \times 10^5$\,MHz/T near the Breit-Rabi crossing, which converts ppm-level field offsets into MHz-level HFS shifts. The same calculation applied to the Ritter \etal\ (1984) measurement gives $-0.18$ to $-0.30$\,MHz; for the Ishida \etal\ (2014) superconducting solenoid (0.9\,ppm uniformity), $|\delta\Delta_\mathrm{HFS}| < 0.2$\,MHz, consistent with their agreement with QED. The bias preserves the Lorentzian line shape to better than $10^{-4}$ of the peak height and is largely independent of gas pressure, surviving the standard zero-density extrapolation. These two properties explain why this systematic remained unquantified in the published values for four decades.
+\end{abstract}
+
+\maketitle
+
+%% ====================================================================
+\section{Introduction}
+\label{sec:intro}
+%% ====================================================================
+
+Positronium (Ps), the bound state of an electron and a positron, is the lightest purely leptonic atom and provides a uniquely clean system for testing bound-state quantum electrodynamics (QED)~\cite{Adkins2022,Karshenboim2005}. The current theoretical prediction for the ground-state hyperfine structure (HFS) interval, including corrections through $O(m\alpha^6)$ and partial $O(m\alpha^7)$ contributions, is $\Delta_\mathrm{HFS}^\mathrm{QED} = 203\,391.69 \pm 0.41$\,MHz~\cite{Kniehl2000,Melnikov2001,Baker2014}. The two most precise measurements, by Mills \& Bearman~\cite{Mills1975,Mills1983} ($203\,387.5 \pm 1.6$\,MHz) and Ritter \etal~\cite{Ritter1984} ($203\,389.10 \pm 0.74$\,MHz), both used the indirect Zeeman method in gas-filled microwave cavities within conventional electromagnets. Their weighted average of $203\,388.65 \pm 0.67$\,MHz lies $3.9\sigma$ below QED. A more recent measurement by Ishida \etal~\cite{Ishida2014}, using a superconducting solenoid with 0.9\,ppm field uniformity, obtained $203\,394.2 \pm 2.1$\,MHz---consistent with QED but with insufficient precision to resolve the discrepancy.
+
+The role of magnetic field inhomogeneity as a possible systematic in the conventional-magnet measurements has been recognized qualitatively for over a decade. Miyazaki~\cite{Miyazaki2010} identified field non-uniformity and non-thermalization as ``probable common systematic errors.'' Asai \etal~\cite{Asai2012} noted the same concern in designing a direct 203\,GHz measurement. The ETH Zurich group~\cite{Heiss2018} explicitly designed their experiment to be ``free of systematic effects found in earlier experiments, namely the inhomogeneity in static magnetic fields.'' Mills and Bearman themselves measured the gradients across their cavity by NMR and reported a sub-ppm spatial offset, which they applied as a linear correction to the central magnetic field~\cite{Mills1975}. However, the offset was never propagated through the nonlinear Breit-Rabi inversion that converts the resonance field into the extracted HFS interval. We perform that propagation here.
+
+We show in Sec.~\ref{sec:mechanism} that a sensitivity coefficient $d\Delta_\mathrm{HFS}/dB_\mathrm{res} \approx 4.5 \times 10^5$\,MHz/T near the Breit-Rabi crossing amplifies sub-ppm field offsets into MHz-level HFS shifts. Section~\ref{sec:mills} applies this to the Mills measurement using the published gradients and Ps distribution, with no free parameters, obtaining $\delta\Delta_\mathrm{HFS} = -0.22 \pm 0.06$\,MHz. Sections~\ref{sec:ritter} and~\ref{sec:ishida} apply the same calculation to Ritter (parameter-bounded) and Ishida (negative control). Section~\ref{sec:invisible} identifies two general properties---Lorentzian shape preservation and pressure independence---that explain why this systematic escaped detection for four decades.
+
+%% ====================================================================
+\section{Mechanism: Breit-Rabi amplification}
+\label{sec:mechanism}
+%% ====================================================================
+
+\subsection{Positronium in a magnetic field}
+
+The ground-state Hamiltonian of positronium in a magnetic field $B$ along $\hat{z}$ is $H = H_\mathrm{HFS} + H_\mathrm{Z}$, where $H_\mathrm{HFS} = (\Delta/4)\,\bm{\sigma}_e \cdot \bm{\sigma}_p$ is the hyperfine interaction and $H_\mathrm{Z} = g_e \mu_B B\,(S_{ez} - S_{pz})/\hbar$ is the Zeeman interaction. Here $g_e = 2.002\,319\,304$ and $\mu_B/h = 13\,996.245$\,MHz/T. The $m = \pm 1$ triplet states are exactly unaffected by the field; only the $m = 0$ subspace is mixed, giving eigenvalues
+\begin{align}
+  E_{m=\pm 1} &= \Delta/4, \label{eq:Em1} \\
+  E_{\pm} &= -\Delta/4 \pm \tfrac{1}{2}\sqrt{\Delta^2 + 4V^2}, \label{eq:Epm}
+\end{align}
+where $V = g_e \mu_B B$. In our numerical implementation, we diagonalize the full $4 \times 4$ Hamiltonian matrix, which agrees with Eqs.~(\ref{eq:Em1})--(\ref{eq:Epm}) to better than $10^{-11}$\,MHz. The measured transition frequency is
+\begin{equation}
+  \nu_\mathrm{trans}(B) = E_+ - E_{m=+1} = \frac{\Delta}{2}\bigl(\sqrt{1 + x^2} - 1\bigr),
+  \label{eq:nutrans}
+\end{equation}
+where $x = 2V/\Delta$. Figure~\ref{fig:zeeman} shows the four eigenvalues as a function of $B$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{fig1_zeeman_eigenvalues.png}
+  \caption{Zeeman eigenvalues of the positronium ground state. The $m = \pm 1$ states (green, orange) are exactly degenerate at $\Delta/4$ for all $B$. The purple arrow indicates the measured transition $E_+ - E_{m=+1}$.}
+  \label{fig:zeeman}
+\end{figure}
+
+\subsection{The amplification factor}
+\label{sec:amplification}
+
+In the indirect Zeeman method, one locates the central field $B_\mathrm{res}$ at which $\nu_\mathrm{trans}(B_\mathrm{res}) = \nu_\mathrm{MW}$ for a fixed microwave frequency $\nu_\mathrm{MW}$, and inverts Eq.~(\ref{eq:nutrans}) to obtain $\Delta_\mathrm{HFS}$. If the magnetic field is non-uniform, each positronium atom samples a local field $B_i = B_0(1 + \delta_i)$. To leading order, the averaged signal peaks at an apparent field shifted by $\delta B_\mathrm{res} \approx -\langle\delta\rangle B_0$ relative to the true resonance field.
+
+The effect on the extracted $\Delta_\mathrm{HFS}$ is obtained by implicit differentiation of Eq.~(\ref{eq:nutrans}) at fixed $\nu_\mathrm{MW}$:
+\begin{equation}
+  \frac{d\Delta_\mathrm{HFS}}{dB_\mathrm{res}} = -\frac{\partial\nu_\mathrm{trans}/\partial B}{\partial\nu_\mathrm{trans}/\partial\Delta}.
+  \label{eq:amplification}
+\end{equation}
+At the operating point of the Mills experiment ($B \approx 0.925$\,T, $\nu_\mathrm{MW} = 3253$\,MHz), we obtain
+\begin{equation}
+  \frac{d\Delta_\mathrm{HFS}}{dB_\mathrm{res}} \approx +4.5 \times 10^5~\mathrm{MHz/T}.
+  \label{eq:amp_value}
+\end{equation}
+A spatially averaged offset of just $+0.5$\,ppm at $B_0 = 0.925$\,T ($\delta B \approx 4.6 \times 10^{-7}$\,T) therefore produces $|\delta\Delta_\mathrm{HFS}| \approx 0.2$\,MHz---comparable to the statistical uncertainty of the original measurements. This amplification factor of order $5 \times 10^5$ between the fractional field offset and the extracted HFS shift is generic to indirect Zeeman measurements near the Breit-Rabi crossing.
+
+%% ====================================================================
+\section{Reanalysis of Mills (1975)}
+\label{sec:mills}
+%% ====================================================================
+
+\subsection{Experimental configuration}
+
+Mills \& Bearman~\cite{Mills1975} used a thin silver-plated copper cavity (diameter 112.5\,mm, thickness 12.7\,mm) operating in the TM$_{110}$ mode at $\nu_\mathrm{MW} = 3253$\,MHz with $B_0 = 0.925$\,T. NMR probe measurements at the cavity center yielded $\partial^2 B/\partial x^2 = -14$\,ppm/cm$^2$, $\partial^2 B/\partial y^2 = -28$\,ppm/cm$^2$, and $\partial^2 B/\partial z^2 = +44$\,ppm/cm$^2$ ($z$ along the field). These values satisfy $\nabla^2 B_z = -14 - 28 + 44 = +2$\,ppm/cm$^2$, consistent with $\nabla^2 B_z = 0$ in vacuum to $2.3\%$ of the sum of the absolute values. Table~\ref{tab:experiments} summarizes the experimental parameters for all three measurements.
+
+\begin{table}[b]
+\caption{Experimental parameters for the three HFS measurements.}
+\label{tab:experiments}
+\begin{ruledtabular}
+\begin{tabular}{lccc}
+ & Mills~\cite{Mills1975} & Ritter~\cite{Ritter1984} & Ishida~\cite{Ishida2014} \\
+\hline
+$B_0$ (T) & 0.925 & 0.79 & 0.866 \\
+$\nu_\mathrm{MW}$ (MHz) & 3253 & 2384 & 2856.6 \\
+Cavity $R$ (mm) & 56.25 & 76.8 & 64 \\
+Cavity $L$ (mm) & 12.7 & 38.1 & 100 \\
+Magnet type & Electromagnet & Electromagnet & SC solenoid \\
+$B$ uniformity & Measured\footnotemark[1] & $\sim 0.5$\,ppm\footnotemark[2] & 0.9\,ppm \\
+\end{tabular}
+\end{ruledtabular}
+\footnotetext[1]{NMR-measured second derivatives reported in Ref.~\cite{Mills1975}.}
+\footnotetext[2]{Post-shimming weighted standard deviation~\cite{Ritter1984}.}
+\end{table}
+
+\subsection{Field model and spatial distribution}
+
+In cylindrical symmetry, the azimuthal average gives $\partial^2 B/\partial r^2 = (\partial^2 B/\partial x^2 + \partial^2 B/\partial y^2)/2 = -21$\,ppm/cm$^2$. For the Gaussian transverse distribution measured by Mills ($\sigma_r = 2.44$\,mm), the azimuthal average is exact: the contribution $\langle\tfrac{1}{2}(\alpha_x x^2 + \alpha_y y^2)\rangle = \tfrac{1}{2}(\alpha_x + \alpha_y)\sigma^2 = \alpha_r \sigma^2$ is independent of the individual values of $\alpha_x$ and $\alpha_y$ when $\langle x^2\rangle = \langle y^2\rangle = \sigma^2$. The field profile is
+\begin{equation}
+  B(r,z) = B_0\left[1 + \frac{1}{2}\alpha_r r^2 + \frac{1}{2}\alpha_z z^2\right],
+  \label{eq:mills_field}
+\end{equation}
+where $\alpha_r = -0.21$\,m$^{-2}$ and $\alpha_z = +0.44$\,m$^{-2}$. This model has no free parameters---it is fully determined by the published experimental data.
+
+The positronium transverse distribution was measured by slit scans~\cite{Mills1975}: Gaussian with $\sigma_r = 2.44$\,mm. The axial distribution is uniform within the 12.7\,mm cavity thickness, weighted by the detection efficiency function $w(z) = 1 - b|z|$ with $b = 1.4$\,cm$^{-1}$ (Ref.~\cite{Mills1975}, Eq.~4), which represents the position-dependent coincidence detection efficiency for 2$\gamma$ annihilation events. The weighting remains positive throughout the cavity ($b L/2 = 0.89 < 1$).
+
+\subsection{Simulation procedure}
+
+We numerically reproduce the complete experimental procedure:
+\begin{enumerate}
+  \item Sample $N = 5 \times 10^5$ positronium positions $(r_i, z_i)$ from the Gaussian transverse distribution and uniform axial distribution.
+  \item For each scan field $B_0$, compute the local field $B_i = (B_0/B_0^\mathrm{nom}) \times B(r_i, z_i)$.
+  \item Compute the local transition frequency using a pre-computed cubic interpolation table (20\,000 points).
+  \item The signal at each scan point is the detection-weighted Lorentzian average:
+  \begin{equation}
+    S(B_0) = \frac{\sum_i w(z_i)\, L_i(B_0)}{\sum_i w(z_i)},
+    \label{eq:signal}
+  \end{equation}
+  where $L_i = (\gamma/2)^2/[(\nu_{\mathrm{trans},i} - \nu_\mathrm{MW})^2 + (\gamma/2)^2]$ and $\gamma = 5$\,MHz.
+  \item Fit $S(B_0)$ to a Lorentzian in $B$ to extract $B_\mathrm{res}$.
+  \item Extract $\Delta_\mathrm{HFS}$ by numerically inverting Eq.~(\ref{eq:nutrans}).
+\end{enumerate}
+
+A baseline computed with the identical pipeline using a uniform field ($B = B_0$ everywhere) is subtracted to isolate the inhomogeneity effect from the nonlinear fitting bias ($\approx -0.03$\,MHz):
+\begin{equation}
+  \delta\Delta_\mathrm{HFS} = \Delta_\mathrm{HFS}^\mathrm{extracted} - \Delta_\mathrm{HFS}^\mathrm{uniform\;control}.
+  \label{eq:shift}
+\end{equation}
+This baseline subtraction is robust: the corrected result is stable to $< 0.001$\,MHz for scan windows ranging from $\pm 3\gamma$ to $\pm 16\gamma$ and from 50 to 800 scan points.
+
+\subsection{Result}
+
+Using the published gradients and the measured positronium distribution with detection weighting, we obtain
+\begin{equation}
+  \delta\Delta_\mathrm{HFS}^\mathrm{Mills} = -0.22 \pm 0.06~\mathrm{MHz},
+  \label{eq:mills_result}
+\end{equation}
+where the uncertainty includes the Monte Carlo statistical uncertainty ($\pm 0.001$\,MHz from 20 independent random seeds), the quadratic field model approximation ($\pm 0.03$\,MHz, estimated from the difference between our $\langle\delta B/B_0\rangle = +0.52$\,ppm and the $+0.44$\,ppm reported by Mills \& Bearman using discrete NMR measurements), the uncertainty in the detection weight parameter $b$ ($\pm 0.05$\,MHz for a $\pm 10\%$ variation), and the weak pressure dependence of the radial distribution ($\pm 0.02$\,MHz). The mean field offset over the positronium distribution, $\langle\delta B/B_0\rangle = +0.52$\,ppm, is consistent with the $+0.44$\,ppm computed by Mills \& Bearman; the residual difference reflects the approximation of the true field by a second-order expansion.
+
+The result scales linearly with the gradient magnitude to better than $0.1\%$ (tested up to $4\times$ the measured gradients), confirming that the first-order mechanism described in Sec.~\ref{sec:amplification} dominates. The analytical estimate from the amplification factor, $\delta\Delta_\mathrm{HFS} \approx (d\Delta/dB_\mathrm{res}) \times \langle\delta B\rangle \approx 4.5 \times 10^5 \times (-0.52 \times 10^{-6} \times 0.925) = -0.22$\,MHz, agrees with the full numerical result to $1\%$.
+
+Figure~\ref{fig:resonance} shows the simulated resonance curve.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{resonance_curves_corrected.png}
+  \caption{Upper panel: simulated Zeeman resonance for the Mills configuration with NMR-measured gradients (solid blue) and Lorentzian fit (dashed red), compared to the uniform-field control (green). The annotated $\delta\Delta_\mathrm{HFS}$ is baseline-subtracted. Lower panel: fit residuals normalized to the peak height, confirming $< 10^{-4}$ deviation from a perfect Lorentzian.}
+  \label{fig:resonance}
+\end{figure}
+
+%% ====================================================================
+\section{Reanalysis of Ritter (1984)}
+\label{sec:ritter}
+%% ====================================================================
+
+Ritter \etal~\cite{Ritter1984} used a Varian V4012A electromagnet (pole diameter 304.8\,mm, gap 66.7\,mm)~\cite{Theriot1970} with careful shimming. The field is parameterized as
+\begin{equation}
+  B(r,z) = B_0\left[1 + c_2\,\frac{2z^2 - r^2}{R_\mathrm{ref}^2}\right],
+  \label{eq:ritter_field}
+\end{equation}
+with $R_\mathrm{ref} = 33.35$\,mm (half the pole gap). Ritter \etal\ reported a weighted standard deviation of 0.5\,ppm after shimming, corresponding to $c_2 \approx 3$--$5$\,ppm. We use the actual cavity dimensions ($R_\mathrm{cav} = 76.8$\,mm, $L_\mathrm{cav} = 38.1$\,mm) and positronium confinement region ($R \approx 12.7$\,mm, uniform). Table~\ref{tab:results} presents the results.
+
+\begin{table}[t]
+\caption{Systematic shift $\delta\Delta_\mathrm{HFS}$ for each experimental configuration.}
+\label{tab:results}
+\begin{ruledtabular}
+\begin{tabular}{llr}
+Configuration & Parameters & $\delta\Delta_\mathrm{HFS}$ \\
+ & & (MHz) \\
+\hline
+Mills (meas.\ gradients) & Published data & $-0.22 \pm 0.06$ \\
+Ritter ($c_2 = 3$\,ppm) & Post-shimming & $-0.18$ \\
+Ritter ($c_2 = 5$\,ppm) & Post-shimming & $-0.30$ \\
+Ritter ($c_2 = 10$\,ppm) & Pre-shimming & $-0.60$ \\
+Ritter ($c_2 = 20$\,ppm) & Pre-shimming & $-1.19$ \\
+Ishida SC (0.9\,ppm) & Uniform Ps & $+0.18$ \\
+Ishida SC (0.9\,ppm) & $\lambda = 30$\,mm & $-0.05$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+For the post-shimming range $c_2 = 3$--$5$\,ppm, the bias is $-0.18$ to $-0.30$\,MHz. The shift scales linearly with $c_2$, as expected from the first-order mechanism. Figure~\ref{fig:ritter_scan} shows the systematic shift as a function of $c_2$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{ritter_c2_scan.png}
+  \caption{Systematic shift for the Ritter configuration with actual cavity dimensions and positronium confinement. Green shading: post-shimming range ($c_2 = 2$--$5$\,ppm); orange shading: pre-shimming range. The dashed line marks the Ritter discrepancy with QED ($-2.59$\,MHz) for reference.}
+  \label{fig:ritter_scan}
+\end{figure}
+
+%% ====================================================================
+\section{Verification with Ishida (2014)}
+\label{sec:ishida}
+%% ====================================================================
+
+The Ishida experiment~\cite{Ishida2014} used a superconducting solenoid with 0.9\,ppm root-mean-square (RMS) residual non-uniformity in a $40 \times 100$\,mm region, operating at $B_0 = 0.866$\,T and $\nu_\mathrm{MW} = 2856.6$\,MHz. Our simulation gives $\delta\Delta_\mathrm{HFS} = +0.18$\,MHz for uniform Ps and $-0.05$\,MHz for non-thermalized Ps ($\lambda = 30$\,mm). Both values are well below the experimental uncertainty of $\pm 2.1$\,MHz. The superconducting magnet's high uniformity effectively eliminates this systematic, naturally explaining why the Ishida result agrees with QED.
+
+%% ====================================================================
+\section{Two properties that hid the systematic}
+\label{sec:invisible}
+%% ====================================================================
+
+\subsection{Lorentzian shape preservation}
+\label{sec:shape}
+
+The averaged resonance curve $S(B_0)$ [Eq.~(\ref{eq:signal})] retains its Lorentzian shape to remarkable precision. For the Mills configuration, the maximum absolute residual between the inhomogeneous signal and the Lorentzian fit is $9.6 \times 10^{-5}$ of the peak height, with an RMS residual of $5.3 \times 10^{-5}$. This is indistinguishable from the numerical noise of the uniform-field baseline ($9.3 \times 10^{-5}$ and $5.3 \times 10^{-5}$, respectively).
+
+No diagnostic based on the chi-squared of the fit, the presence of asymmetric shoulders, or any other line-shape analysis could have detected this systematic at the precision of the 1975--1984 experiments.
+
+\subsection{Pressure independence}
+\label{sec:pressure}
+
+The bias can be decomposed into a radial contribution from $\alpha_r$ and an axial contribution from $\alpha_z$:
+\begin{equation}
+  \langle\delta B/B_0\rangle = \underbrace{\alpha_r \sigma_r^2}_{\text{radial: }-1.25\,\text{ppm}} + \underbrace{\tfrac{1}{2}\alpha_z \langle z^2\rangle_w}_{\text{axial: }+1.77\,\text{ppm}}.
+  \label{eq:decomposition}
+\end{equation}
+The axial term, which contributes 77\% of the total offset, depends only on the detection geometry and cavity thickness---not on the gas pressure. Only the radial term depends on $\sigma_r$, which varies weakly with pressure through the positron stopping range. Over the full range of plausible $\sigma_r$ values (1.5 to 5.0\,mm), $\delta\Delta_\mathrm{HFS}$ varies by $\sim 0.1$\,MHz. At Mills's operating conditions, a realistic $\pm 20\%$ variation in $\sigma_r$ changes $\delta\Delta$ by $\lesssim 0.02$\,MHz.
+
+Since the standard extrapolation to zero gas density removes only pressure-dependent systematics, the field-inhomogeneity bias survives this extrapolation as a nearly constant offset.
+
+\subsection{Generality}
+
+Together, these two properties---shape preservation and pressure independence---characterize a class of systematics that escape both line-shape diagnostics and pressure-extrapolation controls. Any inhomogeneity-induced shift that is linear in the mean spatial offset of the field and does not couple to gas-density-dependent dynamics falls into this class. The amplification by the nonlinear Breit-Rabi inversion, which is generic to indirect Zeeman methods, converts what appears to be a ``sub-ppm'' effect into a MHz-level bias on the extracted splitting.
+
+%% ====================================================================
+\section{Limitations and the joint thermalization problem}
+\label{sec:limitations}
+%% ====================================================================
+
+Our calculation isolates a single systematic---the field-inhomogeneity bias propagated through the Breit-Rabi inversion---under the simplifying assumption of a thermalized positronium spatial distribution. In reality, the same atoms that sample the non-uniform field are also subject to incomplete thermalization, which Ishida \etal~\cite{Ishida2014} estimated as a separate $\sim 2$\,MHz systematic in their own apparatus.
+
+These two corrections are not independent. The non-thermalized positronium population samples the magnetic field with a different spatial weight than the thermalized population, and the velocity distribution that drives the gas-density shift depends on the local field through the position-dependent formation dynamics. A correct joint correction requires a self-consistent simulation of thermalization in a non-uniform field, which is beyond the scope of the present work.
+
+We do not combine our field-inhomogeneity result with the published Ishida thermalization estimate to produce a single corrected significance for the historical discrepancy. Such a combination would require: (i) re-deriving the thermalization correction under the gas conditions of Mills (isobutane) and Ritter (N$_2$) rather than transferring Ishida's number, (ii) computing the joint distribution of position and velocity, and (iii) propagating the correlated uncertainty.
+
+We note several additional approximations. (i) The microwave cavity mode (TM$_{110}$) has a spatially varying field amplitude; the position-dependent transition rate $\propto |B_\mathrm{MW}(\mathbf{r})|^2$ is not included in our weighting. We estimate this contributes an additional systematic uncertainty of order $\pm 0.05$\,MHz. (ii) The non-Hermitian corrections from singlet annihilation, which Mills~\cite{Mills1983} showed produce a line-center shift of $\sim 0.5$\,MHz, are expected to cancel to leading order in our baseline subtraction, but we have not verified this numerically; this constitutes a further unquantified uncertainty. (iii) The quadratic field model approximates the true field, as evidenced by the difference between our $\langle\delta B/B_0\rangle = +0.52$\,ppm and the $+0.44$\,ppm computed by Mills from discrete NMR measurements.
+
+The claims of this work are made at three distinct levels of robustness:
+\begin{enumerate}
+  \item \textbf{Parameter-free.} The field-inhomogeneity contribution to the Mills HFS value is $-0.22 \pm 0.06$\,MHz using only the published gradients and detection weighting.
+  \item \textbf{Parameter-bounded.} For the Ritter measurement, the contribution lies in the range $-0.18$ to $-0.30$\,MHz, bounded by the reported post-shimming uniformity.
+  \item \textbf{Mechanism-level.} The Lorentzian shape preservation and pressure independence are general properties of the Breit-Rabi amplification mechanism, not specific to any one experiment.
+\end{enumerate}
+
+%% ====================================================================
+\section{Implications for current and future measurements}
+\label{sec:future}
+%% ====================================================================
+
+Our results imply that any future precision measurement of the ground-state positronium HFS using the indirect Zeeman method must verify the magnetic field uniformity at the $\sim 1$\,ppm level and demonstrate complete Ps thermalization. The importance of cavity-related systematics has been underscored by recent work at UCL: Akopyan \etal~\cite{Akopyan2021} showed through numerical simulations that microwave reflections produce frequency-dependent power distributions that shift extracted frequencies by several MHz, and Sheldon \etal~\cite{Sheldon2023} confirmed this by redesigning the microwave environment, reducing a $4.5\sigma$ fine-structure discrepancy~\cite{Gurung2020} to $1.3\sigma$. The ongoing programs at ETH Zurich~\cite{ThorpeWoods2026} and the Ramsey spectroscopy techniques at UCL~\cite{Newson2026} introduce new sensitivity to field gradients between interaction regions, making field characterization even more critical.
+
+The self-consistent calculation combining field inhomogeneity with positronium thermalization dynamics---accounting for the correlated sampling of non-uniform fields by non-thermalized positronium---is the key remaining step toward determining the joint correction and its impact on the historical discrepancy.
+
+%% ====================================================================
+\section{Conclusions}
+\label{sec:conclusion}
+%% ====================================================================
+
+\begin{enumerate}
+  \item[(i)] The Breit-Rabi inversion of an indirect Zeeman HFS measurement amplifies fractional field offsets by a factor $\sim 5 \times 10^5$ near the operating point of the Mills, Ritter, and Ishida experiments.
+
+  \item[(ii)] Propagating the field offset published by Mills and Bearman through this amplification, with no free parameters, gives a contribution of $-0.22 \pm 0.06$\,MHz to the Mills HFS value. The same calculation gives $-0.18$ to $-0.30$\,MHz for the Ritter measurement and $< 0.2$\,MHz for the Ishida superconducting magnet, qualitatively consistent with the observed pattern of agreement with QED.
+
+  \item[(iii)] The bias preserves the Lorentzian fit shape to better than $10^{-4}$ of the peak height and is largely independent of gas pressure. These two properties identify a class of systematics that escape both standard line-shape diagnostics and zero-density extrapolation controls used in indirect Zeeman measurements.
+
+  \item[(iv)] The present calculation accounts for $\sim 5\%$ of the Mills discrepancy and $\sim 7$--$12\%$ of the Ritter discrepancy with QED. A self-consistent simulation combining field inhomogeneity with positronium thermalization dynamics is required to determine the joint correction.
+\end{enumerate}
+
+%% ====================================================================
+\begin{acknowledgments}
+The simulation code is publicly available at \url{https://github.com/Jefemaestro33/ps-hfs-field-inhomogeneity}.
+\end{acknowledgments}
+%% ====================================================================
+
+\bibliography{02_paper_refs}
+
+\end{document}
