@@ -1,10 +1,13 @@
 # Magnetic-field-inhomogeneity bias in indirect Zeeman measurements of the positronium hyperfine interval
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19638949.svg)](https://doi.org/10.5281/zenodo.19638949)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Supporting code for the manuscript:
 
-> Zermeño, E. D. (2026). *Magnetic-field-inhomogeneity bias in indirect Zeeman measurements of the positronium hyperfine interval.* Manuscript in preparation.
+> Zermeño, E. D. (2026). *Magnetic-field-inhomogeneity bias in indirect Zeeman measurements of the positronium hyperfine interval.* Manuscript submitted to Physical Review A.
 
-This repository contains the simulation code that reproduces all numerical results reported in the manuscript, including the central parameter-free shift of the Mills measurement, the Ritter parameter scan, and the Ishida negative control.
+This repository contains the simulation code that reproduces all numerical results reported in the manuscript, including the central parameter-free shift of the Mills measurement, the Ritter parameter scan, and the Ishida negative control. The archived release is permanently available at Zenodo: [10.5281/zenodo.19638949](https://doi.org/10.5281/zenodo.19638949).
 
 ---
 
@@ -54,7 +57,7 @@ All scripts are self-contained and produce console output plus JSON / PNG files 
 ### Main simulation (Mills + Ritter + Ishida)
 
 ```bash
-cd paper1_v4
+cd replication
 python run_corrected_simulation.py
 ```
 
@@ -95,16 +98,16 @@ python ps_distributions.py        # Verifies sampling within cavity bounds
 
 | File | Purpose | Paper reference |
 |---|---|---|
-| `paper1_v4/01_paper_draft.tex` | LaTeX manuscript (REVTeX 4-2, PRA format) | — |
-| `paper1_v4/02_paper_refs.bib` | Bibliography | — |
-| `paper1_v4/breit_rabi.py` | 4×4 Hamiltonian diagonalization, transition frequency, Breit–Rabi inversion, cubic interpolator | §II.A, Eqs. (1)–(3) |
-| `paper1_v4/magnetic_field_models.py` | Uniform, quadrupolar, combined, and finite-solenoid field models | §III.B (Mills), §IV (Ritter), §V (Ishida) |
-| `paper1_v4/ps_distributions.py` | Ps spatial distributions (uniform, non-thermalized exponential, Gaussian core) | §III.B |
-| `paper1_v4/zeeman_resonance.py` | Resonance-curve simulation, Lorentzian fit, HFS extraction | §III.C |
-| `paper1_v4/run_corrected_simulation.py` | Main driver: Mills + Ritter scan + Ishida | Tables I, II |
-| `paper1_v4/fase2_investigations.py` | TM₁₁₀, non-Hermitian, pressure-survival checks | §VII (ii)–(iv) |
-| `paper1_v4/generate_figures.py` | Produces all three manuscript figures | Figs. 1–3 |
-| `paper1_v4/corrected_results.json` | Cached numerical results from the main pipeline | Tables I, II |
+| `replication/01_paper_draft.tex` | LaTeX manuscript (REVTeX 4-2, PRA format) | — |
+| `replication/02_paper_refs.bib` | Bibliography | — |
+| `replication/breit_rabi.py` | 4×4 Hamiltonian diagonalization, transition frequency, Breit–Rabi inversion, cubic interpolator | §II.A, Eqs. (1)–(3) |
+| `replication/magnetic_field_models.py` | Uniform, quadrupolar, combined, and finite-solenoid field models | §III.B (Mills), §IV (Ritter), §V (Ishida) |
+| `replication/ps_distributions.py` | Ps spatial distributions (uniform, non-thermalized exponential, Gaussian core) | §III.B |
+| `replication/zeeman_resonance.py` | Resonance-curve simulation, Lorentzian fit, HFS extraction | §III.C |
+| `replication/run_corrected_simulation.py` | Main driver: Mills + Ritter scan + Ishida | Tables I, II |
+| `replication/fase2_investigations.py` | TM₁₁₀, non-Hermitian, pressure-survival checks | §VII (ii)–(iv) |
+| `replication/generate_figures.py` | Produces all three manuscript figures | Figs. 1–3 |
+| `replication/corrected_results.json` | Cached numerical results from the main pipeline | Tables I, II |
 
 ---
 
@@ -141,19 +144,29 @@ All three are declared in `breit_rabi.py`.
 
 ## Citation
 
-If you use this code, please cite the manuscript once it is available:
+If you use this code, please cite both the Zenodo archive and the manuscript:
 
 ```bibtex
-@article{Zermeno2026,
+@software{Zermeno2026_code,
+  author    = {Zerme\~no, Ernest Darell},
+  title     = {Magnetic-field-inhomogeneity bias in indirect Zeeman measurements
+               of the positronium hyperfine interval: simulation code v1.0.0},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19638949},
+  url       = {https://doi.org/10.5281/zenodo.19638949}
+}
+
+@article{Zermeno2026_paper,
   author  = {Zerme\~no, Ernest Darell},
   title   = {Magnetic-field-inhomogeneity bias in indirect Zeeman measurements
              of the positronium hyperfine interval},
-  journal = {Manuscript in preparation},
+  journal = {Manuscript submitted to Physical Review A},
   year    = {2026}
 }
 ```
 
-This entry will be updated with the final journal reference upon publication.
+The `@article` entry will be updated with the final journal reference upon publication.
 
 ---
 
