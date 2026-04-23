@@ -542,19 +542,24 @@ print(f"""
       identical in uniform and non-uniform fields, and cancels exactly.
 
   #17 MILLS PRESSURE CURVE:
-    Survival through zero-density extrapolation: {survival_pct:.0f}%
-    Bias at extrapolated n=0: {survival:.4f} MHz (vs {at_nominal:.4f} at nominal P)
-    Slope change: {slope_diff/slope_without*100:.2f}%
-    → The inhomogeneity bias is essentially pressure-independent and
-      survives the standard zero-density extrapolation nearly intact.
+    δΔ_inhom range across 100-500 Torr: [{delta_inhom_at_P.min():+.3f}, {delta_inhom_at_P.max():+.3f}] MHz
+    δΔ at nominal pressure (P={P_NOM:.0f} Torr):  {at_nominal:+.3f} MHz
+    Linear extrapolation to n=0:         {survival:+.3f} MHz
+    Slope change due to inhomogeneity:   {slope_diff:+.2f} MHz/amagat ({slope_diff/slope_without*100:+.1f}%)
+    → With σ_r ∝ 1/√P, the bias varies significantly across pressures and
+      can change sign; the extrapolated intercept differs from the nominal-
+      pressure value. The axial-only component (-0.73 MHz in the σ_r→0
+      limit) is strictly pressure-independent. Determining the surviving
+      fraction requires characterizing σ_r(n), which is not available from
+      the original experiment (see manuscript Sec. VI.B).
 
-  UPDATED ERROR BUDGET:
-    Monte Carlo (20 seeds):     ±0.001 MHz
-    Quadratic model (0.52 vs 0.44): ±0.03 MHz
-    Detection weight b (±10%):  ±0.05 MHz
-    Pressure dependence:        ±0.02 MHz
-    TM₁₁₀ mode weight:         ±{abs(diff_tm):.3f} MHz (was ±0.05, now verified)
-    Non-Hermitian residual:     ±{abs(diff_nh):.3f} MHz (was unknown, now verified)
+  ERROR BUDGET (matches manuscript Sec. III.C):
+    (i)   Monte Carlo (20 seeds):      ±0.001 MHz
+    (ii)  NMR gradient (Maxwell):      ±0.02  MHz  (δΔ: -0.22 to -0.18)
+    (iii) Detection weight b (±10%):   ±0.09  MHz  (∂δΔ/∂b ≈ -0.9 MHz·cm)
+    (iv)  TM₁₁₀ mode weight:          ±{abs(diff_tm):.3f} MHz (verified this run)
+    (v)   Pressure dependence (local): ±0.02  MHz
+          Non-Hermitian residual:      ±{abs(diff_nh):.3f} MHz (verified this run)
     ---
-    TOTAL (quadrature):         ±{np.sqrt(0.001**2 + 0.03**2 + 0.05**2 + 0.02**2 + diff_tm**2 + diff_nh**2):.3f} MHz
+    TOTAL (quadrature):                ±{np.sqrt(0.001**2 + 0.02**2 + 0.09**2 + 0.02**2 + diff_tm**2 + diff_nh**2):.3f} MHz
 """)

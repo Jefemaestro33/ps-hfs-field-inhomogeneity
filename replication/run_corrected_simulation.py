@@ -235,8 +235,10 @@ print("ISHIDA 2014 — superconductor verification")
 print(f"{'='*72}")
 
 B_ishida_nom = find_B_resonance(ISHIDA_NU)
+# Ishida 2014 PLB 734:338 reports 1.5 ppm RMS in the 40 x 100 mm region.
+# (The earlier 0.9 ppm figure from Ishida 2011 proceedings was superseded.)
 ishida_mag = FiniteSolenoid(B_ishida_nom, bore_radius=0.4, length=2.0,
-                            residual_rms_ppm=0.9, name="Ishida SC")
+                            residual_rms_ppm=1.5, name="Ishida SC")
 
 res_ishida_unif = run_with_baseline(
     ishida_mag, UniformPs(), ISHIDA_R, ISHIDA_L, ISHIDA_NU, ISHIDA_GAMMA,
